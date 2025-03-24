@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Genius Filter</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-size:contain;
+            background-position: center center;
+            background-attachment: fixed;
+            color: rgb(244, 244, 244);
+            margin: 0;
+            padding: 0%;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            font-family: Arial, Helvetica, sans-serif;
+           ;
+        }
+        .fullscreen-bg{
+            position:-webkit-sticky;
+            top: 0;
+            left: 0;
+            position: fixed;
+            width: 100vw;
+            height: 100lvh;        
+        }
+
+        .hero {
+            position:absolute;
+            height: 100vh;
+            background: url('background.jpg') no-repeat center center/cover;
+            display:block;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-left: 28%;
+            padding-right: 28%;
+        }
+        .hero::before{
+            content: "";
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 50%;
+            height: 50%;
+
+        }
+
+        .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh; /* Ensures full viewport height */
+    width: 100%;
+    flex-direction: column;
+    margin: 0 auto;
+    padding-top: 10%;    
+}
+.logo {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgb(98, 95, 95);
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        .byline {
+            font-size: 1.5rem;
+            font-weight: 400;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .description {
+            font-size: 1.6rem;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 520;
+            font-family:Arial, Helvetica, sans-serif;
+            
+        }
+
+
+        /* Form styling */
+        form {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input {
+            padding: 14px;
+            width: 390px;
+            background: rgba(0, 0, 0, 0.2);
+            border-color: rgb(21, 79, 131);
+            border: 1px solid;
+            border-radius: 1px;
+            font-size:19.1px;
+            text-align: left;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 330px;
+            height: 54px;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 25px;
+            gap: 10px;
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            border: none;
+            outline: none;
+            font-size:19.1px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: Arial, Helvetica, sans-serif;
+            width: 228px;
+            height: 54px;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        /* Left side round button [Ele] */
+        .round-btn {
+            position:absolute;
+            top: 10px;
+            left: 0;
+            width: 50px;
+            height: 50px;
+            background: white;
+            color: black;
+            display: flex;
+            align-content:end;
+            align-items:center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            text-decoration: none;
+            font-size:small;
+            padding: 10px;
+        }
+        .parent-container{
+            display: flex;
+            position: relative;
+            justify-content: flex-start;
+        }
+
+        /* Right side "POSTS" button */
+        .posts-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: rgb(225, 233, 226);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size:small;
+        }
+        
+    </style>
+</head>
+<body>
+    <img src="Ele.png" alt="Background" class="fullscreen-bg">
+    <div class="hero">
+        <a href="#" class="round-btn">[Ele]</a> <!-- Left side button -->
+        <a href="#" class="posts-btn">POSTS</a> <!-- Right side button -->
+        
+        <div class="container">
+            <h1 class="logo">The Genius Filter</h1>
+            <h2 class="byline"><strong>by [Ele]</strong></h2>
+            <p class="description">Welcome to Electron Everyday we'll send you the world's most important AI, business news, with a hint of wit and humor, so that you start your day informed, knowledgeable, and ready to go</p>
+            <form id="subscribeForm">
+                <input type="email" id="emailInput" placeholder="Your Email Address" required>
+                <button type="submit">SUBSCRIBE</button>
+            </form>
+            <p id="message" style="margin-top: 10px;"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var email = document.getElementById('emailInput').value;
+            if (email) {
+                document.getElementById('message').innerText = 'Thank you for subscribing!';
+                document.getElementById('emailInput').value = '';
+            } else {
+                document.getElementById('message').innerText = 'Please enter a valid email!';
+            }
+        });
+    </script>
+</body>
+</html>
